@@ -1,0 +1,72 @@
+Group Members: Cameron Rhea, Cameron Savage
+
+Git Repo Link:
+
+Compilation Instructions:
+star_of_stars.py can be run using the makefile make.sh by executing:
+$ ./make.sh
+This will run star_of_stars.py with 16 networks and 16 nodes per network by default. If you wish to change the number of networks or nodes, you should use the below method.
+
+Alternatively if you do not have permission to execute this bash script you can execute the following:
+$ python star_of_stars.py <number of networks> <number of nodes per network>
+
+Files and purpose:
+star_of_stars.py - this is the main project file which generates data input files, starts CCS and Shadow CCS, starts CAS switches, starts nodes, then shuts down switches and nodes and cleans up.
+
+in_files_generator.py - this script generates a number of files in the format specified in the lab description, to match the number of networks and nodes the user wishes to generate. This ensures that all of the files being used end up having correct network and node destinations.
+
+make.sh - compiles and runs the program with 16 networks and 16 nodes per network.
+
+in/*.txt (in files) - the resulting generated input data files that are read by the nodes
+
+out/*.txt (out files) - the resulting output files that are written to by the nodes.
+
+
+Feature                                                                                                     Status/Description
+Project Compiles and Builds without warnings or errors	                                                    Complete
+Switch class	                                                                                            Complete
+CAS, CCS Switches has a frame queue, and reads/writes appropriately	                                        Complete
+CAS, CCS Switches allows multiple connections	                                                            Complete
+CAS, CCS Switches flood frames when it doesn't know the destination	                                        Complete
+CAS, CCS Switches learn destinations, and doesn't forward packets to any port except the one required	    Complete
+CAS connects to CCS	                                                                                        Complete
+CAS receives local firewall rules	                                                                        Complete
+CAS forwards traffic and ACKs properly	                                                                    Complete
+CCS switch opens the firewall file and gets the rules	                                                    Complete
+CCS passes global traffic	                                                                                Complete
+CCS does the global firewalls	                                                                            Complete
+CCS Shadow switches run and test properly	                                                                Complete
+Node class	                                                                                                Complete
+Nodes instantiate, and open connection to the switch	                                                    Complete
+Nodes open their input files, and send data to switch	                                                    Complete
+Nodes open their output files, and save data that they received	                                            Complete
+Node will sometimes drop acknowledgment	                                                                    Complete
+Node will sometimes create erroneous frame	                                                                Complete
+Node will sometimes reject traffic	                                                                        Complete
+
+
+Known Bugs:
+
+Comments:
+Similarly to last lab, the lab description mentioned that input files would be provided but I did not find them in any of the folders in the Files page of Canvas. Once again, I have written my own script to produce input files that uses random number and string generation to create the input files. The same precaution as before was taken and I made sure the random node and network destinations of all input files were existing networks and nodes. If my method of generating input files is considered unnaceptable this time, I believe my implementation will be robust enough for you to comment out the line in the main function of my script which generates the input files and use your own. Also keep in mind that if you do choose to use your own files, please put them in a directory called 'in' at the same level as the star_of_stars.py script in the directory structure, since that is where my program will look for them.
+
+
+Directory structure:
+├── ParentDir/
+│   ├── star_of_stars.py
+│   ├── in_files_generator.py
+│   ├── in/
+│   │   ├── file1.txt
+│   │   └── file2.txt
+│   │   └── ...
+│   └── out/
+│       ├── file3.txt
+│       └── file4.txt
+│   │   └── ...
+
+
+
+Citations:
+https://github.com/MattCrook/python_sockets_multi_threading
+https://www.dataquest.io/blog/how-to-use-python-data-classes/
+
